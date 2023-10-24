@@ -1,24 +1,47 @@
 const majorArcana = [/* List of major arcana cards */];
 const minorArcana = [/* List of minor arcana cards */];
 
+function ensureNoDuplicates(selectedCards, cardToCheck) {
+    return !selectedCards.some(card => card.name === cardToCheck.name);
+}
+
+function determineOrientation() {
+    return Math.random() < 0.5 ? "upright" : "reversed";
+}
+
+function getRandomCard(cards) {
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    return cards.splice(randomIndex, 1)[0];
+}
+
 function drawTarotCards() {
     const selectedCards = [];
-    
-    // Randomly select major arcana card
-    const majorIndex = Math.floor(Math.random() * majorArcana.length);
-    const majorCard = majorArcana[majorIndex];
-    selectedCards.push(majorCard);
+    const cardContainer = document.getElementById("card-container");
 
-    // Randomly select minor arcana card
-    const minorIndex = Math.floor(Math.random() * minorArcana.length);
-    const minorCard = minorArcana[minorIndex];
-    selectedCards.push(minorCard);
+    // Define your array of tarot cards with properties
+    const tarotCards = [
+        { name: "Card1", imageURL: "image1.jpg" },
+        { name: "Card2", imageURL: "image2.jpg" },
+        { name: "Card3", imageURL: "image3.jpg" },
+        // Add more tarot cards with their image URLs
+    ];
 
-    // Add logic to ensure no duplicates in the reading
-
-    // Randomly determine card orientations (upright or reversed)
+    while (selectedCards.length < 3) {
+        const cardToDraw = getRandomCard(tarotCards);
+        cardToDraw.orientation = determineOrientation();
+        selectedCards.push(cardToDraw);
+    }
 
     // Add animation to flip the cards
+    selectedCards.forEach((card, index) => {
+        const cardElement = document.getElementById(`card${index + 1}`);
+        cardElement.classList.add(card.orientation);
+    });
 
     // Replace the card images in the HTML with selected cards
+    selectedCards.forEach((card, index) => {
+        const cardElement = document.getElementById(`card${index + 1}`);
+        const imageElement = cardElement.querySelector("img");
+        imageElement.src = card.imageURL;
+    });
 }
