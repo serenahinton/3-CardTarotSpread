@@ -1,5 +1,9 @@
 const majorArcana = [/* List of major arcana cards */];
+    { name: "The Fool", imageURL: "fool.jpg" },
+];
 const minorArcana = [/* List of minor arcana cards */];
+    { name: "Ace of Swords", imageURL: "ace-of-swords.jpg" },
+];
 
 function ensureNoDuplicates(selectedCards, cardToCheck) {
     return !selectedCards.some(card => card.name === cardToCheck.name);
