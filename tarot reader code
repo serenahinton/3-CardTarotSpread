@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3-Card Tarot Reading</title>
     <style>
+ body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
         /* CSS for changing the color of the title */
         h1 {
-            color: blue; /* Change to the color you prefer */
+            color: ffffff; /* Change to the color you prefer */
         }
         .card-image {
             width: 200px; /* Adjust the size of the card images */
@@ -17,12 +25,12 @@
     </style>
 </head>
 <body>
-    <h1>Your 3-Card Tarot Reading</h1>
+    <h1>3-Card Tarot Reading</h1>
     <div id="tarot-readings">
         <!-- Image elements for displaying the card backs -->
-        <img class="card-image" src="back_of_card.jpg" alt="Back of Card" id="card1">
-        <img class="card-image" src="back_of_card.jpg" alt="Back of Card" id="card2">
-        <img class="card-image" src="back_of_card.jpg" alt="Back of Card" id="card3">
+        <img class="card-image" src="https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/backofcard.jpg?raw=true" alt="Back of Card" id="card1">
+        <img class="card-image" src="https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/backofcard.jpg?raw=true" alt="Back of Card" id="card2">
+        <img class="card-image" src="https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/backofcard.jpg?raw=true" alt="Back of Card" id="card3">
     </div>
     <button onclick="drawTarotCards()">Generate Reading</button>
 
@@ -30,28 +38,28 @@
     <script>
         // Define the Tarot deck with card meanings
         const tarotDeck = {
-    "The Fool": "New beginnings, innocence, spontaneity",
-    "The Magician": "Manifestation, resourcefulness, power",
-    "The High Priestess": "Intuition, unconscious, mystery",
-    "The Empress": "Fertility, nurturing, abundance",
-    "The Emperor": "Authority, structure, control",
-    "The Hierophant": "Tradition, conformity, morality",
-    "The Lovers": "Relationships, love, alignment",
-    "The Chariot": "Willpower, determination, success",
-    "Strength": "Courage, inner strength, self-confidence",
-    "The Hermit": "Introspection, solitude, inner guidance",
-    "Wheel of Fortune": "Change, cycles, destiny",
-    "Justice": "Fairness, truth, cause and effect",
-    "The Hanged Man": "Letting go, surrender, new perspective",
-    "Death": "Endings, transformation, change",
-    "Temperance": "Balance, moderation, patience",
-    "The Devil": "Materialism, bondage, ignorance",
-    "The Tower": "Sudden change, upheaval, chaos",
-    "The Star": "Hope, inspiration, generosity",
-    "The Moon": "Illusion, fear, subconscious",
-    "The Sun": "Success, joy, vitality",
-    "Judgement": "Reflection, reckoning, inner calling",
-    "The World": "Completion, integration, accomplishment"
+    "The Fool": "New beginnings, innocence, spontaneity", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thefool.jpeg?raw=true" },
+    "The Magician": "Manifestation, resourcefulness, power", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/themagician.jpeg?raw=true" },
+    "The High Priestess": "Intuition, unconscious, mystery", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thehighpriestess.jpeg?raw=true" },
+    "The Empress": "Fertility, nurturing, abundance", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/theempress.jpeg?raw=true" },
+    "The Emperor": "Authority, structure, control", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/theemperor.jpeg?raw=true" },
+    "The Hierophant": "Tradition, conformity, morality", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thehierophant.jpeg?raw=true" },
+    "The Lovers": "Relationships, love, alignment", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/TheLovers.jpg?raw=true" },
+    "The Chariot": "Willpower, determination, success", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thechariot.jpeg?raw=true" },
+    "Strength": "Courage, inner strength, self-confidence", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thestrength.jpeg?raw=true" },
+    "The Hermit": "Introspection, solitude, inner guidance", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thehermit.jpeg?raw=true" },
+    "Wheel of Fortune": "Change, cycles, destiny", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/wheeloffortune.jpeg?raw=true" },
+    "Justice": "Fairness, truth, cause and effect", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/justice.jpeg?raw=true" },
+    "The Hanged Man": "Letting go, surrender, new perspective", image: “https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thehangedman.jpeg?raw=true” },
+    "Death": "Endings, transformation, change", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/death.jpeg?raw=true" },
+    "Temperance": "Balance, moderation, patience", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/temperance.jpeg?raw=true" },
+    "The Devil": "Materialism, bondage, ignorance", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thedevil.jpeg?raw=true" },
+    "The Tower": "Sudden change, upheaval, chaos", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thetower.jpeg?raw=true" },
+    "The Star": "Hope, inspiration, generosity", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thestar.jpeg?raw=true" },
+    "The Moon": "Illusion, fear, subconscious", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/themoon.jpeg?raw=true" },
+    "The Sun": "Success, joy, vitality", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/thesun.jpeg?raw=true" },
+    "Judgement": "Reflection, reckoning, inner calling", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/judgement.jpeg?raw=true" },
+    "The World": "Completion, integration, accomplishment", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/theworld.jpeg?raw=true" },
         };
 
         function drawTarotCards() {
