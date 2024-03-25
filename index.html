@@ -32,8 +32,6 @@
         <img class="card-image" src="https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/backofcard.jpg?raw=true" alt="Back of Card" id="card2">
         <img class="card-image" src="https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/backofcard.jpg?raw=true" alt="Back of Card" id="card3">
     </div>
-    <button onclick="generateSelections()">Generate Reading</button>
-    <p id="result"></p>
 
     <script>
         // Define the Tarot deck with card meanings
@@ -62,20 +60,23 @@
     "The World": { meaning: "Completion, integration, accomplishment", image: "https://github.com/serenahinton/websitecode/blob/main/Rider%E2%80%93Waite%20Tarot/theworld.jpeg?raw=true" }
         };
         
-           function generateSelections() {
-        const selectedCards = Object.keys(tarotDeck).sort(() => 0.5 - Math.random()).slice(0, 3);
-        selectedCards.forEach((card, index) => {
-            // Display the corresponding card image and meaning
-            const cardImage = document.getElementById(`card${index + 1}`);
-            cardImage.src = tarotDeck[card].image;
-            cardImage.alt = card;
-            cardImage.title = tarotDeck[card].meaning;
-        });
+          function generateSelections() {
+            const selectedCards = Object.keys(tarotDeck).sort(() => 0.5 - Math.random()).slice(0, 3);
+            selectedCards.forEach((card, index) => {
+                // Display the corresponding card image and meaning
+                const cardImage = document.getElementById(`card${index + 1}`);
+                cardImage.src = tarotDeck[card].image;
+                cardImage.alt = card;
+                cardImage.title = tarotDeck[card].meaning;
+            });
 
-        // Display the card meanings below the cards
-        const resultLabel = document.getElementById("result");
-        resultLabel.textContent = "Card Meanings: " + selectedCards.map(card => tarotDeck[card].meaning).join(", ");
-    }
-</script>
+            // Display the card meanings below the cards
+            const resultLabel = document.getElementById("result");
+            resultLabel.textContent = "Card Meanings: " + selectedCards.map(card => tarotDeck[card].meaning).join(", ");
+        }
+    </script>
+    
+    <button onclick="generateSelections()">Generate Reading</button>
+    <p id="result"></p>
 </body>
 </html>
