@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Card Tarot Reading</title>
+    <style>
+        /* CSS for changing the color of the title */
+        h1 {
+            color: 000000; /* Change to the color you prefer */
+        }
+        .card-image {
+            width: 200px; /* Adjust the size of the card images */
+            margin: 10px; /* Add margin between card images */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Your 3-Card Tarot Reading</h1>
+    <div id="tarot-readings">
+        <!-- Image elements for displaying the card backs -->
+        <img class="card-image" src="back_of_card.jpg" alt="Back of Card" id="card1">
+        <img class="card-image" src="back_of_card.jpg" alt="Back of Card" id="card2">
+        <img class="card-image" src="back_of_card.jpg" alt="Back of Card" id="card3">
+    </div>
+    <button onclick="drawTarotCards()">Generate Reading</button>
 
+
+    <script>
+        // Define the Tarot deck with card meanings
+        const tarotDeck = {
+    "The Fool": "New beginnings, innocence, spontaneity",
+    "The Magician": "Manifestation, resourcefulness, power",
+    "The High Priestess": "Intuition, unconscious, mystery",
+    "The Empress": "Fertility, nurturing, abundance",
+    "The Emperor": "Authority, structure, control",
+    "The Hierophant": "Tradition, conformity, morality",
+    "The Lovers": "Relationships, love, alignment",
+    "The Chariot": "Willpower, determination, success",
+    "Strength": "Courage, inner strength, self-confidence",
+    "The Hermit": "Introspection, solitude, inner guidance",
+    "Wheel of Fortune": "Change, cycles, destiny",
+    "Justice": "Fairness, truth, cause and effect",
+    "The Hanged Man": "Letting go, surrender, new perspective",
+    "Death": "Endings, transformation, change",
+    "Temperance": "Balance, moderation, patience",
+    "The Devil": "Materialism, bondage, ignorance",
+    "The Tower": "Sudden change, upheaval, chaos",
+    "The Star": "Hope, inspiration, generosity",
+    "The Moon": "Illusion, fear, subconscious",
+    "The Sun": "Success, joy, vitality",
+    "Judgement": "Reflection, reckoning, inner calling",
+    "The World": "Completion, integration, accomplishment"
+        };
+
+        function drawTarotCards() {
+            const selectedCards = Object.keys(tarotDeck).sort(() => 0.5 - Math.random()).slice(0, 3);
+            selectedCards.forEach((card, index) => {
+                // Display the corresponding card image and meaning
+                const cardImage = document.getElementById(`card${index + 1}`);
+                cardImage.src = tarotDeck[card].image;
+                cardImage.alt = card;
+                cardImage.title = tarotDeck[card].meaning;
+        }
+
+        // Call drawTarotCards function when the page loads
+        window.onload = drawTarotCards;
+    </script>
+</body>
+</html>
